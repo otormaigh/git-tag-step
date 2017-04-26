@@ -7,7 +7,7 @@ git config --global user.email elliot@tapadoo.com
 git config --global user.name "Elliot Tormey"
 
 # Get list of tags from repo
-git fetch --tage $GIT_REMOTE
+git fetch --tag $GIT_REMOTE
 
 # Set the tag name to the stable version of the release
 tagname="$STABLE_VERSION"
