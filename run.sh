@@ -14,7 +14,7 @@ fi
   # variables
   export GRADLE_PATH=gradle.properties   # path to the gradle file
   export GRADLE_FIELD="STABLE_VERSION"   # field name
-  export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $2}')    # get value versionName"0.1.0"
+  export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $3}')    # get value versionName"0.1.0"
   export TAG=$(echo $VERSION_TMP | sed -e 's/^"//'  -e 's/"$//')  # remove quotes 0.1.0
 
   # Check if the tag already exists
