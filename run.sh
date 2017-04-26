@@ -4,7 +4,7 @@ elif [ ! -n "$WERCKER_GIT_TAG_BRANCH" ]; then
   fail 'Missing branch property'
 fi
 
-#if [ "$WERCKER_RESULT" = "success" ]; then
+if [ "$WERCKER_RESULT" = "success" ]; then
   cd $WERCKER_SOURCE_DIR
   # Configure git user
   git config user.email elliot@tapadoo.com
@@ -12,15 +12,19 @@ fi
 
   # Set the tag to the stable version of the release
   # variables
-  export GRADLE_PATH=gradle.properties   # path to the gradle file
-  export GRADLE_FIELD="STABLE_VERSION"   # field name
-  export VERSION_TMP=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $3}')    # get value versionName"0.1.0"
-  export TAG=$(echo $VERSION_TMP | sed -e 's/^"//'  -e 's/"$//')  # remove quotes 0.1.0
+  GRADLE_PATH=gradle.properties   # path to the gradle file
+  GRADLE_FIELD="STABLE_VERSION"   # field name
+  TAG=$(grep $GRADLE_FIELD $GRADLE_PATH | awk '{print $3}')    # get value STABLE_VERSION=0.1.0
 
   # Check if the tag already exists
   if [ $(git tag -l "$TAG") ]; then
-    info "A tag for this version ($TAG) already exists"
+    fail "A tag for this version ($TAG) already exists"
   else
+    # Check to make sure something is there before tagging the commit.
+    if [ ! $TAG ]; then
+      fail "tag is empty"
+    fi
+
     info "Tagging commit '$WERCKER_GIT_COMMIT' with '$TAG'"
     # Tag and push commit
     git tag -a $TAG $WERCKER_GIT_COMMIT -m "$TAG"
@@ -28,8 +32,8 @@ fi
     git tag -l
     git push --tags $GIT_REMOTE
   fi
-#else
-  #info "---------------------"
-  #info "Something went wrong with the previous step. Not going to tag just incase."
-  #info "---------------------"
-#fi
+else
+  info "---------------------"
+  info "Something went wrong with the previous step. Not going to tag just incase."
+  info "---------------------"
+fi
