@@ -1,5 +1,5 @@
 name: git-tag
-version: 0.0.9
+version: 0.0.10
 description: Tag a commit after a succesful release build.
 keywords:
   - git
