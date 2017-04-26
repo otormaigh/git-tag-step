@@ -29,3 +29,4 @@ else
   info "---------------------"
   info "Something went wrong with the previous step. Not going to tag just incase."
   info "---------------------"
+fi
