@@ -10,16 +10,16 @@ fi
   git config user.email elliot@tapadoo.com
   git config user.name "Elliot Tormey"
 
-  # Set the tag name to the stable version of the release
-  tagname="$STABLE_VERSION"
+  # Set the tag to the stable version of the release
+  tag="$STABLE_VERSION"
 
   # Check if the tag already exists
-  if [ $(git tag -l "$tagname") ]; then
+  if [ $(git tag -l "$tag") ]; then
     info "A tag for this version ($tagname) already exists"
   else
-    info "Tagging commit $WERCKER_GIT_COMMIT"
+    info "Tagging commit '$WERCKER_GIT_COMMIT' with '$tag'"
     # Tag and push commit
-    git tag -a $tagname $WERCKER_GIT_COMMIT
+    git tag -a $tag $WERCKER_GIT_COMMIT -m "$tag"
     # List tags just to double check.
     git tag -l
     git push --tags $GIT_REMOTE
