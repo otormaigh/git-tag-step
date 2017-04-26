@@ -1,3 +1,4 @@
+#!/bin/bash
 if [! -d ".git"]; then
   fail "There aint no git here"
 fi
