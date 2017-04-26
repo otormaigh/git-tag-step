@@ -1,10 +1,10 @@
 #!/bin/bash
-if [! -d ".git"]; then
+if [ ! -d ".git" ]; then
   fail "There aint no git here"
 fi
 
 # Configure git user
-if ["$WERCKER_RESULT" = "passed"]; then
+if [ "$WERCKER_RESULT" = "passed" ]; then
   git config --global user.email elliot@tapadoo.com
   git config --global user.name "Elliot Tormey"
 
