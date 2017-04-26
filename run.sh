@@ -19,7 +19,7 @@ fi
   else
     info "Tagging commit $WERCKER_GIT_COMMIT"
     # Tag and push commit
-    git tag -a $tagname $WERCKER_GIT_COMMIT -m "$tagname"
+    git tag -a $tagname $WERCKER_GIT_COMMIT
     # List tags just to double check.
     git tag -l
     git push --tags $GIT_REMOTE
