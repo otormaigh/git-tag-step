@@ -11,7 +11,7 @@ fi
   git config user.name "Elliot Tormey"
 
   # Set the tag to the stable version of the release
-  tag="$STABLE_VERSION"
+  tag = $(gradle -q printVersion)
 
   # Check if the tag already exists
   if [ $(git tag -l "$tag") ]; then
