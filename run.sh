@@ -4,7 +4,8 @@ elif [ ! -n "$WERCKER_GIT_TAG_BRANCH" ]; then
   fail 'Missing branch property'
 fi
 
-if [ "$WERCKER_RESULT" = "success" ]; then
+# Check to make sure the step passed before doing anything.
+if [ "$WERCKER_RESULT" = "passed" ]; then
   cd $WERCKER_SOURCE_DIR
   # Configure git user
   git config user.email elliot@tapadoo.com
