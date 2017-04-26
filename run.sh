@@ -4,7 +4,7 @@ elif [ ! -n "$WERCKER_GIT_TAG_BRANCH" ]; then
   fail 'Missing branch property'
 fi
 
-if [ "$WERCKER_RESULT" = "success" ]; then
+#if [ "$WERCKER_RESULT" = "success" ]; then
   # Configure git user
   git config --global user.email elliot@tapadoo.com
   git config --global user.name "Elliot Tormey"
@@ -25,8 +25,8 @@ if [ "$WERCKER_RESULT" = "success" ]; then
     git tag -a tagname $WERCKER_GIT_COMMIT -m "$tagname"
     git push --tags $GIT_REMOTE
   fi
-else
-  info "---------------------"
-  info "Something went wrong with the previous step. Not going to tag just incase."
-  info "---------------------"
-fi
+#else
+  #info "---------------------"
+  #info "Something went wrong with the previous step. Not going to tag just incase."
+  #info "---------------------"
+#fi
