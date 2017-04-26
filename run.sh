@@ -14,12 +14,12 @@ fi
   tagname="$STABLE_VERSION"
 
   # Check if the tag already exists
-  if [ git tag -l "$tagname" ]; then
+  if [ $(git tag -l "$tagname") ]; then
     info "A tag for this version ($tagname) already exists"
   else
     info "Tagging commit $WERCKER_GIT_COMMIT"
     # Tag and push commit
-    git tag -a tagname $WERCKER_GIT_COMMIT -m "$tagname"
+    git tag -a $tagname $WERCKER_GIT_COMMIT -m "$tagname"
     # List tags just to double check.
     git tag -l
     git push --tags $GIT_REMOTE
